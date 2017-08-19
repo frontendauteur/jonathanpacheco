@@ -1,0 +1,8 @@
+extends ../layout
+
+block content
+  h1 New Tag
+  form(action="/create/tag", method="POST")
+    label(for="name") Name
+      input#name(type="text", name="name", required)
+    button(type="submit") Submit

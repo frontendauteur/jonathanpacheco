@@ -1,0 +1,8 @@
+// Place your settings in this file to overwrite default and user settings.
+{
+    "standard.autoFixOnSave": true,
+    "javascript.validate.enable": true,
+    "[javascript]": {
+        "editor.tabSize": 2
+    },
+}

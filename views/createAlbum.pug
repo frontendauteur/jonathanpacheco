@@ -1,0 +1,28 @@
+extends layout
+
+block content
+  h1 New Album
+  form(action="/create/album", method="POST", enctype="multipart/form-data")
+    label(for="title") Title
+      input#title(type="text", name="title", required, value=title || '')
+    label(for="description") Description
+      textarea#description(type="text", name="description")= description
+    label(for="releaseDate") Release Date
+      input#releaseDate(type="date", name="releaseDate", value=releaseDate || '')
+    label(for="artwork") Artwork
+      input#artwork(type="file", name="artwork")
+    label(for="duration") Duration
+      input#duration(type="number", min=1, name="duration", value=duration || '')
+    label(for="work") Work
+      select#work(name="work", required)
+        option(value='') Choose a Work
+        each availableWork in availableWorks
+          option(value=availableWork.id, selected=work && work.id === availableWork.id)= availableWork.title
+    label(for="artist") Artist
+      select#artist(name="artist")
+        option(value='') Choose an Artist
+        each availableArtist in availableArtists
+          option(value=availableArtist.id, selected=artist && artist.id === availableArtist.id)= availableArtist.name
+    if id
+      input(type='hidden', name='id', value=id)
+    button(type="submit") Submit

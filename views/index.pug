@@ -3,3 +3,41 @@ extends layout
 block content
   h1= title
   p Welcome to #{title}
+  section
+    h1 Works
+    each post in posts
+      include partials/postAtom.pug
+    a(href="/create/work") Create New Work
+  section
+    h1 Albums
+    each album in albums
+      article.h-entry
+        img(src=album.artwork)
+        h1.p-name= album.title
+          | 
+          a(href="/create/album/" + album.id) Edit
+          | 
+          a(href="/delete/album/" + album.id) Delete
+        ul
+          each track in album.tracks
+            li
+              p= track.title
+                | 
+                a(href="/create/track/" + track.id) Edit
+                | 
+                a(href="/delete/track/" + track.id) Delete
+              if track.spotifyUri
+                iframe(src="https://open.spotify.com/embed?uri=" + encodeURIComponent(track.spotifyUri), width="300", height="80", frameborder="0", allowtransparency="true")
+    a(href="/create/album") Create New Album
+  section
+    h1 Tracks
+    each track in tracks
+      article.h-entry
+        img(src=track.artwork)
+        h1.p-name= track.title
+          | 
+          a(href="/create/track/" + track.id) Edit
+          | 
+          a(href="/delete/track/" + track.id) Delete
+      //iframe(src="https://open.spotify.com/embed?uri=" + encodeURIComponent(track.spotifyUri), width="300", height="80", frameborder="0", allowtransparency="true")
+    a(href="/create/track") Create New Track

@@ -1,0 +1,7 @@
+extends layout
+
+block content
+    article.h-entry
+        h1.p-name !{title}
+        time.dt-published(datetime=timestamp.datetime) !{timestamp.text}
+        div.e-content !{content}

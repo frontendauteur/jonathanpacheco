@@ -1,3 +1,5 @@
+- var year = new Date().getFullYear()
+
 doctype html
 html
   head
@@ -5,3 +7,14 @@ html
     link(rel='stylesheet', href='/stylesheets/style.css')
   body
     block content
+    
+    footer(role="contentinfo")
+      section
+        h1 Connect
+        ul
+          li
+            a(href="https://twitter.com/pacheco", rel="me") Twitter
+          li
+            a(href="https://instagram.com/jonathangpacheco", rel="me") Instagram
+      small &copy; #{year} Jonathan Pacheco
+    script(src="/scripts/script.js")

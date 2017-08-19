@@ -1,0 +1,27 @@
+extends layout
+
+block content
+  h1 New Work
+  form(action="/create/work", method="POST")
+    label(for="title") Title
+      input#title(type="text", name="title", required, value=title || '')
+    label(for="medium") Medium
+      select#medium(name="medium", required)
+        option(value='film', selected=medium === 'film') Film
+        option(value='tv', selected=medium === 'tv') TV
+        option(value='game' selected=medium === 'game') Game
+        option(value='book' selected=medium === 'book') Book
+    label(for="filmType") Film Type
+      select#filmType(name="filmType")
+        option(value='') Choose a Film Type
+        option(value='saga', selected=filmType === 'saga') Saga
+        option(value='anthology', selected=filmType === 'anthology') Anthology
+    label(for="saga") Saga
+      select#saga(name="saga")
+        option(value='') Choose a Saga Type
+        option(value='original', selected=saga === 'original') Original
+        option(value='prequel', selected=saga === 'prequel') Prequel
+        option(value='sequel', selected=saga === 'sequel') Sequel
+    if id
+      input(type='hidden', name='id', value=id)
+    button(type="submit") Submit
