@@ -1,17 +1,7 @@
-import Realm from 'realm'
-import * as Schema from './../schema'
+import Database from './Database'
 
-export default function () {
-  return new Realm({
-    path: 'music.realm',
-    schema: [
-      Schema.TrackSchema,
-      Schema.SubTrackSchema,
-      Schema.AlbumSchema,
-      Schema.ArtistSchema,
-      Schema.TagSchema,
-      Schema.WorkSchema
-    ],
-    schemaVersion: 6
-  })
+const getDatabase = () => {
+  return new Database()
 }
+
+export { getDatabase as default }

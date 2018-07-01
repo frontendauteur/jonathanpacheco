@@ -1,0 +1,13 @@
+html,
+body {
+  margin: 0;
+  padding: 0;
+}
+.wrapper {
+    display: grid;
+    margin: 0 auto;
+    width: 80%;
+}
+.main {
+  /* background: blue; */
+}

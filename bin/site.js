@@ -1,53 +1,32 @@
 #!/usr/bin/env node
-'use strict';
-
-var _app = require('./../lib/app');
-
-var _app2 = _interopRequireDefault(_app);
-
-var _debug = require('debug');
-
-var _debug2 = _interopRequireDefault(_debug);
-
-var _http = require('http');
-
-var _http2 = _interopRequireDefault(_http);
-
-var _https = require('https');
-
-var _https2 = _interopRequireDefault(_https);
-
-var _fs = require('fs');
-
-var _fs2 = _interopRequireDefault(_fs);
-
-var _path = require('path');
-
-var _path2 = _interopRequireDefault(_path);
-
-function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-
-/**
- * Get port from environment and store in Express.
- */
 
 
 /**
  * Module dependencies.
  */
 
-var dbg = (0, _debug2.default)('jonathanpacheco:server');
+const app = require('./../src/app');
+const debug = require('debug');
+const http = require('http');
+const https = require('https');
+const fs = require('fs');
+const path = require('path');
+
+/**
+ * Get port from environment and store in Express.
+ */
+const dbg = debug('jonathanpacheco:server');
 var port = normalizePort(process.env.PORT || '3000');
-_app2.default.set('port', port);
+app.set('port', port);
 var options = {
-  key: _fs2.default.readFileSync(_path2.default.join(__dirname, '../', 'localhost.pem')),
-  cert: _fs2.default.readFileSync(_path2.default.join(__dirname, '../', 'localhost.cert'))
+  key: fs.readFileSync(path.join(__dirname, '../', 'localhost.pem')),
+  cert: fs.readFileSync(path.join(__dirname, '../', 'localhost.cert'))
 
   /**
    * Create HTTP server.
    */
 
-};var server = _https2.default.createServer(options, _app2.default);
+};var server = https.createServer(options, app);
 
 /**
  * Listen on provided port, on all network interfaces.

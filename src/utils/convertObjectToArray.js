@@ -1,4 +1,4 @@
-export default function (arrayLikeObject) {
+const convertObjectToArray = (arrayLikeObject) => {
   const arr = []
 
   arrayLikeObject.forEach(object => {
@@ -6,3 +6,5 @@ export default function (arrayLikeObject) {
   })
   return arr
 }
+
+export { convertObjectToArray as default }

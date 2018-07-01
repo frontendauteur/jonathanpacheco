@@ -4,14 +4,14 @@ import getDatabase from './../../utils/getDatabase'
 import getDataById from './../../utils/getDataById'
 import getDataByIds from './../../utils/getDataByIds'
 import cloneDataObject from './../../utils/cloneDataObject'
-import {secondsToTime, timeToSeconds} from './../../utils/date'
-import {TrackSchema} from './../../schema'
+import { secondsToTime, timeToSeconds } from './../../utils/date'
+import { TrackSchema } from './../../schema'
 
 const router = express.Router()
 var db = getDatabase()
 
 /* Post Artist form */
-router.post('/', function ({body}, res) {
+router.post('/', function ({ body }, res) {
   const {
     title = '',
     duration = '0:00',
@@ -22,7 +22,7 @@ router.post('/', function ({body}, res) {
     spotifyUri = '',
     id
   } = body
-  let {album, tags = []} = body
+  let { album, tags = [] } = body
 
   album = album !== '' ? getDataById(album, 'Album', db) : null
 
@@ -32,7 +32,6 @@ router.post('/', function ({body}, res) {
     }
     tags = getDataByIds(tags, 'Tag', db)
   }
-  console.log(tags)
 
   db.write(() => {
     db.create('Track', {
@@ -64,8 +63,7 @@ router.get('/:id', function (req, res, next) {
   data.availableTags = db.objects('Tag')
   data.availableAlbums = db.objects('Album')
   data.duration = secondsToTime(data.duration)
-  console.log(data)
   res.render('create/track', data)
 })
 
-export {router as default}
+export { router as default }
